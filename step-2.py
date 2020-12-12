@@ -41,7 +41,10 @@ def L(cube,type):
 #CUBE 입력
 cube=[list(map(str,input('cube를 한줄씩 입력하시오(3x3):').split()))for i in range(3)]
 inp=0
-
+#초기 CUBE 출력
+for i in cube:
+    print(*i)
+print()
 
 #'Q'입력 전까지 계속 명령어 입력
 while inp != 'Q':
