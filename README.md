@@ -103,7 +103,7 @@ for i in cube:
                 R R R 
  ```
 ### 코드풀이
-* CUBE 출력함수
+* CUBE 출력함수  
 tab으로 구분하여 출력
 ``` python 
 def prt():
@@ -148,7 +148,7 @@ def q():
     exit()
  ```
 
-* 추가기능 (CUBE 셔플)
+* [추가기능] -CUBE 셔플
 'S'입력시 CUBE 셔플 및 작동 시간 초기화
 ``` python 
 if inp == 'S':
@@ -190,7 +190,7 @@ r = ["F", "F'", "B", "B'", "R", "R'", "L", "L'", "U", "U'", "D", "D'"]
             cnt+=1
             prt()
  ```
-* 추가기능 : CUBE 맞춤 시 자동 시행
+* [추가기능] - CUBE 맞춤 시 자동 시행
 ``` python
         answer=True
         for k in [F,B,R,L,U,D]:
