@@ -105,5 +105,13 @@ def rot(t):
         temp = F[0]
         F[0],L[0],B[0],R[0] = L[0],B[0],R[0],temp
 
+    elif t == "D":
+        temp=F[2]
+        F[2],L[2],B[2],R[2]= L[2],B[2],R[2],temp
+    elif t == "D'":
+        temp = F[2]
+        F[2],R[2],B[2],L[2] = R[2],B[2],L[2],temp
+
+
 
 
