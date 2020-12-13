@@ -163,14 +163,14 @@ if inp == 'S':
     F = [[c] * 3 for _ in range(3)] 
     #... 중략 R,U,D,L,B 동일
  ```
-CUBE의 모든 동작 구현 RANDOM으로 24번 시행
+  CUBE의 모든 동작 구현 RANDOM으로 24번 시행
 ``` python 
 r = ["F", "F'", "B", "B'", "R", "R'", "L", "L'", "U", "U'", "D", "D'"]
             for _ in range(24):
                 a = random.choice(r)
  ```
 
-*추가기능 : CUBE 맞춤 시 자동 시행
+* 추가기능 : CUBE 맞춤 시 자동 시행
 ``` python
         answer=True
         for k in [F,B,R,L,U,D]:
