@@ -169,7 +169,27 @@ r = ["F", "F'", "B", "B'", "R", "R'", "L", "L'", "U", "U'", "D", "D'"]
             for _ in range(24):
                 a = random.choice(r)
  ```
+* rot(회전)함수 구현
+각 회전 별 F,F',F2,F'2 구현
+``` python
+        if inp == 'F':
+            rot('F')
+            prt()
+        if inp == 'F2':
+            rot('F')
+            rot('F')
+            cnt+=1
+            prt()
 
+        if inp == "F'":
+            rot("F'")
+            prt()
+        if inp == "F'2":
+            rot("F'")
+            rot("F'")
+            cnt+=1
+            prt()
+ ```
 * 추가기능 : CUBE 맞춤 시 자동 시행
 ``` python
         answer=True
