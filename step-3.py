@@ -1,6 +1,7 @@
 import time
+import random
 start = time.time()
-
+#CUBE 출력 함수
 def prt():
     for i in U:
         print("\t\t\t ",end="")
@@ -13,13 +14,14 @@ def prt():
     for i in D:
         print("\t\t\t ",end="")
         print(*i)
+#CUBE 회전 함수
 def rot(t):
-    #F회전
+
     if t=="F":
        temp1,temp2,temp3= U[2][0],U[2][1],U[2][2]
-       U[2][0], U[2][1], U[2][2]=L[0][2], L[1][2], L[2][2]
+       U[2][0], U[2][1], U[2][2]=L[2][2], L[1][2], L[0][2]
        L[0][2], L[1][2], L[2][2]=D[0][0], D[0][1], D[0][2]
-       D[0][0], D[0][1], D[0][2]=R[0][0], R[1][0], R[2][0]
+       D[0][0], D[0][1], D[0][2]=R[2][0], R[1][0], R[0][0]
        R[0][0], R[1][0], R[2][0]=temp1,temp2,temp3
 
        temp1 = F[0][0]
@@ -30,7 +32,7 @@ def rot(t):
         temp1,temp2,temp3= U[2][0],U[2][1],U[2][2]
         U[2][0], U[2][1], U[2][2]=R[0][0], R[1][0], R[2][0]
         R[0][0], R[1][0], R[2][0]=D[0][2], D[0][1], D[0][0]
-        D[0][2], D[0][1], D[0][0]=L[0][2], L[1][2], L[2][2]
+        D[0][2], D[0][1], D[0][0]=L[2][2], L[1][2], L[0][2]
         L[0][2], L[1][2], L[2][2]=temp3,temp2,temp1
 
         temp1 = F[0][0]
@@ -143,17 +145,28 @@ def rot(t):
         temp = D[0][1]
         D[0][1],D[1][2],D[2][1],D[1][0] = D[1][2],D[2][1],D[1][0],temp
 
+#종료
+def q():
+    print('bye~')
+    end = time.time()
+    start_end = time.ctime(end - start)
+    print('경과시간:', str(start_end)[14:19])
+    print("조작갯수:", cnt)
+    print('이용해주셔서 감사합니다. 뚜뚜뚜.')
+    exit()
 
-F=[ ['O']*3 for _ in range (3) ]
-R=[ ['G']*3 for _ in range (3) ]
-U=[ ['B']*3 for _ in range (3) ]
-B=[ ['Y']*3 for _ in range (3) ]
-L=[ ['W']*3 for _ in range (3) ]
-D=[ ['R']*3 for _ in range (3) ]
+F=[ ['G']*3 for _ in range (3) ]
+R=[ ['R']*3 for _ in range (3) ]
+U=[ ['W']*3 for _ in range (3) ]
+B=[ ['B']*3 for _ in range (3) ]
+L=[ ['O']*3 for _ in range (3) ]
+D=[ ['Y']*3 for _ in range (3) ]
 inp=0
 cnt=0
 while inp!='Q':
     cmd=list(map(str,input("CUBE>")))
+
+
     #cmd(명령어)안의 "'" 결합 후 제거
     while "'" in cmd:
         if "'" in cmd:
@@ -167,16 +180,49 @@ while inp!='Q':
 #명령어 구현 시작
     for i in range(len(cmd)):
         inp=cmd.pop(0)
+
 #명령어 'Q'입력 시 끝
         if inp=="Q":
-            end=time.time()
-            start_end=time.ctime(end-start)
-            print('경과시간:',str(start_end)[14:19])
-            print("조작갯수:",cnt)
-            print('이용해주셔서 감사합니다. 뚜뚜뚜.')
-            exit()
+            q()
+
 #명령어 구현
         print(inp)
+
+        # scramble 기능
+        if inp == 'S':
+            #조작개수 초기화
+            cnt=0
+
+            #컬러 리스트를 shuffle통해 섞어줌.
+            color = ["O", "G", "R", "B", "W", "Y"]
+            random.shuffle(color)
+
+            c = color.pop()
+            F = [[c] * 3 for _ in range(3)]
+
+            c = color.pop()
+            R = [[c] * 3 for _ in range(3)]
+
+            c = color.pop()
+            U = [[c] * 3 for _ in range(3)]
+
+            c = color.pop()
+            D = [[c] * 3 for _ in range(3)]
+
+            c = color.pop()
+            L = [[c] * 3 for _ in range(3)]
+
+            c = color.pop()
+            B = [[c] * 3 for _ in range(3)]
+
+            # 모든 기능 중 랜덤으로 24번 회전시켜줌
+            r = ["F", "F'", "B", "B'", "R", "R'", "L", "L'", "U", "U'", "D", "D'"]
+            for _ in range(24):
+                a = random.choice(r)
+                rot(a)
+            start = time.time()  # 섞었으므로, start 갱신
+            prt()
+
         if inp == 'F':
             rot('F')
             prt()
@@ -284,4 +330,17 @@ while inp!='Q':
             rot("L'")
             cnt+=1
             prt()
+
+#모든 면이 맞았는 지 판명코드
+        answer=True
+        for k in [F,B,R,L,U,D]:
+            for i in range(3):
+                for j in range(3):
+                    if k[i][j] != k[1][1]:
+                        answer=False
+                        break
+        if answer==True:
+            print("축하합니다! 모든 면을 다 맞추셨습니다.")
+            q()
+
         cnt+=1
