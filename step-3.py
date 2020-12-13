@@ -1,3 +1,10 @@
+#STEP3 루빅스 큐브 구현
+#CUBE는  W, B, G, Y, O, R의 6가지 색깔
+#입력: 각 조작법을 한 줄 입력
+#출력: 큐브의 6면을 펼친 상채 출력
+#Q를 입력받으면 프로그램 종료, 큐브를 다 맞출 시 자동종료
+#종료 : 종료 시 경과시간, 조작갯수, 안내멘트 출력
+
 import time
 import random
 start = time.time()
@@ -154,7 +161,7 @@ def rot(t):
 
 #종료
 def q():
-    print('bye~')
+    print('---------CUBE 맞추기 종료---------')
     end = time.time()
     start_end = time.ctime(end - start)
     print('경과시간:', str(start_end)[14:19])
