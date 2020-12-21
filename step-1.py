@@ -14,14 +14,14 @@ else:
     while turn!=0:
         if type.upper()=='L':
             if cnt<0:
-                word.append(word.pop())  #오른쪽으로 밀어내기
+                word.insert(0,word.pop())  #오른쪽으로 밀어내기
             else:
                 word.append(word.pop(0)) #왼쪽으로 밀어내기
         else:
             if cnt<0:
                 word.append(word.pop(0))
             else:
-                word.append(word.pop())
+                word.insdert(0,word.pop())
         turn-=1
     print('밀어낸 결과:',"".join(word)) #word 배열 함수 join 출력
 
