@@ -39,7 +39,7 @@ def L(cube,type):
 
 
 #CUBE 입력
-cube=[list(map(str,input('cube를 한줄씩 입력하시오(3x3):').split()))for i in range(3)]
+cube = [ ['R','R','W'],['G','C','W'],['G','B','B'] ]
 inp=0
 #초기 CUBE 출력
 for i in cube:
